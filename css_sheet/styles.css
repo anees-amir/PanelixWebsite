@@ -4,16 +4,16 @@
 
 /* --- TOKENS --- */
 :root {
-  --steel-darkest: #0d0d0f;
+  --steel-darkest: #1a1a2e;
   --steel-dark: #14141a;
   --steel-mid: #1e1e28;
   --steel-light: #2c2c3a;
   --steel-border: #3a3a4a;
-  --spark: #f97316;
+  --spark: #936f4e;
   --spark-bright: #fb923c;
   --spark-glow: rgba(249, 115, 22, 0.25);
   --text-primary: #f0ede8;
-  --text-secondary: #9d9aaa;
+  --text-secondary: #f0ede8;
   --text-muted: #5c5a68;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Barlow', sans-serif;
@@ -258,6 +258,12 @@ input, textarea, select {
   display: inline-block;
   margin-top: 10px;
   font-size: 1.4rem;
+}
+
+.logo-img {
+  width: 550px;   /* adjust as needed */
+  margin-left: -70px;
+  height: auto;   /* keeps aspect ratio */
 }
 
 /* ======================================
