@@ -19,27 +19,20 @@
       </a>
 
     <ul class="nav__links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav__cta">Get a Quote</a>
+
     <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#services" class="mobile-link">Services</a></li>
-      <li><a href="#about" class="mobile-link">About</a></li>
-      <li><a href="#process" class="mobile-link">Process</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
-      <li><a href="#contact" class="mobile-link mobile-link--cta">Get a Quote</a></li>
-    </ul>
-  </div>
+
 
   <!-- HERO -->
   <section class="hero">
@@ -54,8 +47,7 @@
         Expert panel beating, smash repairs, and full respray services. Back on the road — better than before.
       </p>
       <div class="hero__actions reveal reveal--delay-3">
-        <a href="#contact" class="btn btn--primary">Get a Free Quote</a>
-        <a href="#services" class="btn btn--ghost">Our Services</a>
+        <a href="#contact" class="btn btn--primary">Contact Us</a>
       </div>
     </div>
     <div class="hero__badge">
@@ -84,106 +76,60 @@
     </div>
     <div class="stats__divider"></div>
     <div class="stats__item">
-      <strong class="counter" data-target="98">0</strong>
-      <span>%Customer Satisfaction</span>
-    </div>
-    <div class="stats__divider"></div>
-    <div class="stats__item">
       <strong class="counter" data-target="8">0</strong>
       <span>Expert Technicians</span>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="services__header">
-      <p class="section-label">What We Do</p>
-      <h2 class="section-title reveal">PRECISION<br/><span>CRAFTSMANSHIP</span></h2>
+<section class="services" id="services">
+  <div class="services__header">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title reveal">PRECISION<br/><span>CRAFTSMANSHIP</span></h2>
+  </div>
+  <div class="services__grid">
+
+    <div class="service-card reveal">
+      <div class="service-card__num">01</div>
+      <div class="service-card__icon">🔨</div>
+      <h3>Panel Beating</h3>
+      <p>Minor dents to major collision damage — restored to factory spec.</p>
+      <div class="service-card__bar"></div>
     </div>
-    <div class="services__grid">
 
-      <div class="service-card reveal">
-        <div class="service-card__num">01</div>
-        <div class="service-card__icon">🔨</div>
-        <h3>Panel Beating</h3>
-        <p>From minor dents to major collision damage, our skilled panel beaters restore your vehicle's body to factory specification using the latest techniques and tools.</p>
-        <div class="service-card__bar"></div>
-      </div>
-
-      <div class="service-card reveal reveal--delay-1">
-        <div class="service-card__num">02</div>
-        <div class="service-card__icon">🚗</div>
-        <h3>Smash Repairs</h3>
-        <p>Comprehensive structural and cosmetic repairs after accidents. We work directly with all major insurers and handle the entire claims process for you.</p>
-        <div class="service-card__bar"></div>
-      </div>
-
-      <div class="service-card reveal reveal--delay-2">
-        <div class="service-card__num">03</div>
-        <div class="service-card__icon">🎨</div>
-        <h3>Spray Painting</h3>
-        <p>Computer-matched paint technology ensures a flawless, seamless finish. Partial panels to full vehicle resprays — every coat is perfect.</p>
-        <div class="service-card__bar"></div>
-      </div>
-
-      <div class="service-card reveal reveal--delay-1">
-        <div class="service-card__num">04</div>
-        <div class="service-card__icon">✦</div>
-        <h3>Dent Removal</h3>
-        <p>Paintless dent repair (PDR) for hail damage, door dings, and minor dents — no filler, no repainting. Fast, affordable, and invisible.</p>
-        <div class="service-card__bar"></div>
-      </div>
-
-      <div class="service-card reveal reveal--delay-2">
-        <div class="service-card__num">05</div>
-        <div class="service-card__icon">🛡</div>
-        <h3>Rust Treatment</h3>
-        <p>We identify, treat, and seal rust before it spreads. Protect your vehicle's value and structural integrity with our rust-proofing solutions.</p>
-        <div class="service-card__bar"></div>
-      </div>
-
-      <div class="service-card reveal reveal--delay-3">
-        <div class="service-card__num">06</div>
-        <div class="service-card__icon">⚡</div>
-        <h3>Insurance Claims</h3>
-        <p>Stress-free insurance work. We liaise directly with your insurer, provide detailed repair quotes, and handle all paperwork end-to-end.</p>
-        <div class="service-card__bar"></div>
-      </div>
-
+    <div class="service-card reveal reveal--delay-1">
+      <div class="service-card__num">02</div>
+      <div class="service-card__icon">🚗</div>
+      <h3>Smash Repairs</h3>
+      <p>Full structural and cosmetic repairs. We handle the insurance claim end-to-end.</p>
+      <div class="service-card__bar"></div>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="about__image-col">
-      <div class="about__image-block">
-        <div class="about__image-accent"></div>
-        <div class="about__image-inner">
-          <div class="about__workshop-visual">
-            <div class="workshop-icon">🔧</div>
-            <p>Est. 2006</p>
-            <p class="about__workshop-sub">Melbourne, VIC</p>
-          </div>
-        </div>
-      </div>
+    <div class="service-card reveal reveal--delay-2">
+      <div class="service-card__num">03</div>
+      <div class="service-card__icon">🎨</div>
+      <h3>Spray Painting</h3>
+      <p>Computer-matched paint for a seamless finish — spot repairs to full resprays.</p>
+
+      <div class="service-card__bar"></div>
     </div>
-    <div class="about__text-col">
-      <p class="section-label reveal">Our Story</p>
-      <h2 class="section-title reveal reveal--delay-1">BUILT ON<br /><span>INTEGRITY</span></h2>
-      <p class="about__body reveal reveal--delay-2">
-        For over 20 years, Panelix has been Melbourne's go-to panel beating shop. What started as a one-man workshop has grown into a 8-strong team of certified technicians who care about one thing: returning your car to you in better condition than you left it.
-      </p>
-      <p class="about__body reveal reveal--delay-2">
-        We use cutting-edge frame straightening equipment, waterborne eco-paints, and computerised colour matching — all backed by a <strong>lifetime workmanship guarantee</strong> on every repair.
-      </p>
-      <ul class="about__features reveal reveal--delay-3">
-        <li><span class="feature-dot"></span>Certified by all major insurers</li>
-        <li><span class="feature-dot"></span>Lifetime workmanship warranty</li>
-        <li><span class="feature-dot"></span>Free loan cars available</li>
-        <li><span class="feature-dot"></span>Eco-friendly waterborne paints</li>
-      </ul>
+
+    <div class="service-card reveal reveal--delay-1">
+      <div class="service-card__num">04</div>
+      <div class="service-card__icon">✦</div>
+      <h3>Dent Removal</h3>
+      <p>Paintless dent repair (PDR) for hail, door dings and minor dents — no filler.</p>
+      <div class="service-card__bar"></div>
     </div>
-  </section>
+ </div>
+
+
+
+<div class="hero__actions reveal reveal--delay-3" style="padding-top: 40px;">
+        <a href="services.html" class="btn btn--primary">Explore Services</a>
+</div>
+ 
+</section>
 
   <!-- PROCESS -->
   <section class="process" id="process">
@@ -225,111 +171,79 @@
         <div class="process__step-arrow last"></div>
       </div>
     </div>
+
+    <div class="hero__actions reveal reveal--delay-3" style="padding-top: 40px;">
+        <a href="process.html" class="btn btn--primary">Explore Process</a>
+</div>
   </section>
 
   <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="contact__left">
-      <p class="section-label">Get in Touch</p>
-      <h2 class="section-title reveal">LET'S FIX<br /><span>YOUR CAR.</span></h2>
-      <div class="contact__info">
-        <div class="contact__info-item">
-          <span class="contact__info-icon">📍</span>
-          <div>
-            <strong>Visit Us</strong>
-            <p>Complete Address Here VIC</p>
-          </div>
-        </div>
-        <div class="contact__info-item">
-          <span class="contact__info-icon">📞</span>
-          <div>
-            <strong>Call Us</strong>
-            <p>(02) NUMBER</p>
-          </div>
-        </div>
-        <div class="contact__info-item">
-          <span class="contact__info-icon">🕐</span>
-          <div>
-            <strong>Hours</strong>
-            <p>Mon–Fri: 7:30am – 5:30pm<br/>Sat: 8:00am – 1:00pm</p>
-          </div>
+  
+<section class="pr-cta" id="contact">
+    <p class="section-label">Start today</p>
+    <h2 class="pr-cta__title">READY TO GET<br/><span>STARTED?</span></h2>
+    <p class="pr-cta__sub">Get in touch for a free assessment for a same-day digital quote.</p>
+
+    <div class="pr-cta__contact">
+      <div class="pr-cta__contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <strong>Visit Us</strong>
+          <span>3 Kinder St, Campbellfield VIC 3061</span>
         </div>
       </div>
-    </div>
-    <div class="contact__right reveal">
-      <form class="contact__form" id="contactForm">
-        <div class="form__row">
-          <div class="form__group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="John Smith" required />
-          </div>
-          <div class="form__group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" placeholder="0400 000 000" />
-          </div>
+      <div class="pr-cta__contact-divider"></div>
+      <div class="pr-cta__contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div>
+          <strong>Call Us</strong>
+          <a href="tel:0393976663"><span>03 9397 6663</span></a>
         </div>
-        <div class="form__group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="john@example.com" required />
+      </div>
+      <div class="pr-cta__contact-divider"></div>
+      <div class="pr-cta__contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <strong>Email Us</strong>
+          <a href="mailto:Panel.ix@yahoo.com"><span>panel.ix@yahoo.com</span></a>
         </div>
-        <div class="form__group">
-          <label for="service">Service Required</label>
-          <select id="service">
-            <option value="">Select a service...</option>
-            <option>Panel Beating</option>
-            <option>Smash Repairs</option>
-            <option>Spray Painting</option>
-            <option>Dent Removal (PDR)</option>
-            <option>Rust Treatment</option>
-            <option>Insurance Claim</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form__group">
-          <label for="message">Tell Us About the Damage</label>
-          <textarea id="message" rows="4" placeholder="Describe the damage or what you need..."></textarea>
-        </div>
-        <button type="submit" class="btn btn--primary btn--full">Send My Quote Request</button>
-        <div class="form__success" id="formSuccess">
-          ✓ Thanks! We'll be in touch within 24 hours.
-        </div>
-      </form>
+      </div>
     </div>
   </section>
 
+
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer__top">
-      <div class="footer__brand">
-        <a href="index.html" class="logo">
-        <img src="images/logo.svg"  alt="PanelIx" class="logo-img">
+ <!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__top" style="margin-top: -40px;">
+
+    <!-- LEFT -->
+    <div class="footer__brand">
+      <a href="index.html" class="logo">
+        <img src="images/logo.svg" alt="Panelix" class="logo-img">
       </a>
-        <p>Melbourne's panel beating specialists since 2006. Quality repairs, guaranteed for life.</p>
+      <p>
+        Melbourne's panel beating specialists. 
+        Quality repairs, guaranteed for life.
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer__right" style="margin-top: 60px;">
+      <div class="footer__bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="footer__bottom-dot"></span>
+        <a href="terms.html">Terms &amp; Conditions</a>
       </div>
-      <div class="footer__links">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#services">Panel Beating</a></li>
-          <li><a href="#services">Smash Repairs</a></li>
-          <li><a href="#services">Spray Painting</a></li>
-          <li><a href="#services">Dent Removal</a></li>
-        </ul>
-      </div>
-      <div class="footer__links">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#process">Our Process</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#contact">Get a Quote</a></li>
-        </ul>
+
+      <div class="footer__bottom-info">
+        <p>© 2026 Panelix Panel Beating</p>
+        <p>ABN 65 695 899 159 · Campbellfield VIC 3061</p>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p>© 2026 Panelix Panel Beating. All rights reserved.</p>
-      <p>ABN 000 · Melbourne, Australia</p>
-    </div>
-  </footer>
+
+  </div>
+</footer>
 
   <script>
     // NAV scroll effect

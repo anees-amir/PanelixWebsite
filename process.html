@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panelix: Our Process</title>
+  <link rel="stylesheet" href="css_sheet/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Process page additions only ──
+       All tokens, nav, footer, buttons, reveal
+       and sv-* classes come from styles.css     */
+
+    /* ── Hero ── */
+    .pr-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding: 160px 60px 80px;
+      background:
+        radial-gradient(ellipse 50% 80% at 80% 40%, rgba(204,213,71,0.07) 0%, transparent 60%),
+        linear-gradient(160deg, var(--steel-darkest) 0%, #111118 100%);
+    }
+    .pr-hero::before {
+      content: '';
+      position: absolute;
+      top: -10%; right: -5%;
+      width: 55%; height: 120%;
+      background: repeating-linear-gradient(
+        -55deg, transparent, transparent 40px,
+        rgba(255,255,255,0.018) 40px, rgba(255,255,255,0.018) 41px
+      );
+      pointer-events: none;
+    }
+    .pr-hero__content { position: relative; z-index: 2; }
+    .pr-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 10rem);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+    .pr-hero__title span { color: var(--spark); }
+    .pr-hero__sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* ── Intro band ── */
+    .pr-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      padding: 80px 60px;
+      border-top: 1px solid var(--steel-border);
+      border-bottom: 1px solid var(--steel-border);
+      background: var(--steel-mid);
+    }
+    .pr-intro__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      color: var(--text-primary);
+    }
+    .pr-intro__body {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      border-left: 2px solid var(--spark);
+      padding-left: 28px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── Accent rule ── */
+    .pr-rule {
+      display: flex;
+      align-items: center;
+      padding: 0 60px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .pr-rule::before { content: ''; display: block; width: 60px; height: 2px; background: var(--spark); flex-shrink: 0; }
+    .pr-rule::after  { content: ''; display: block; flex: 1; height: 1px; background: var(--steel-border); }
+
+    /* ── Phase header (mirrors sv-category__header) ── */
+    .pr-phase {
+      padding: 0 60px 80px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .pr-phase__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 60px 0 28px;
+      border-bottom: 1px solid var(--steel-border);
+    }
+    .pr-phase__num {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      line-height: 1;
+      color: var(--steel-light);
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .pr-phase__name {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      flex: 1;
+    }
+    .pr-phase__tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--spark);
+      border: 1.5px solid var(--steel-border);
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Step row (mirrors sv-item) ── */
+    .pr-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      align-items: start;
+      gap: 28px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--steel-border);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, background var(--transition);
+    }
+    .pr-step.revealed { opacity: 1; transform: translateY(0); }
+    .pr-step:hover { background: rgba(204,213,71,0.03); }
+
+    .pr-step__icon {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--steel-border);
+      border-radius: var(--radius);
+      color: var(--spark);
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .pr-step:hover .pr-step__icon {
+      border-color: var(--spark);
+      background: rgba(204,213,71,0.1);
+    }
+    .pr-step__icon svg {
+      width: 20px; height: 20px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .pr-step__title {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .pr-step__desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin-bottom: 14px;
+    }
+    .pr-step__detail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 4px;
+    }
+    .pr-step__chip {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--spark);
+      border: 1px solid var(--steel-border);
+      padding: 4px 10px;
+      border-radius: var(--radius);
+      background: rgba(204,213,71,0.05);
+    }
+
+    /* ── Timeline connector (between phases) ── */
+    .pr-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 60px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .pr-connector__line {
+      flex: 1;
+      height: 1px;
+      background: var(--steel-border);
+    }
+    .pr-connector__arrow {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--spark);
+      padding: 0 20px;
+      opacity: 0.7;
+    }
+
+    /* ── Guarantee block ── */
+    .pr-guarantee {
+      background: var(--steel-dark);
+      border-top: 1px solid var(--steel-border);
+      border-bottom: 1px solid var(--steel-border);
+      padding: 80px 60px;
+    }
+    .pr-guarantee__inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .pr-guarantee__badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .pr-guarantee__ring {
+      position: absolute;
+      inset: 0;
+      border: 2px dashed var(--spark);
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: rotateSlow 20s linear infinite;
+    }
+    .pr-guarantee__ring-inner {
+      position: absolute;
+      inset: 16px;
+      border: 1px solid var(--steel-border);
+      border-radius: 50%;
+    }
+    .pr-guarantee__badge-text {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .pr-guarantee__badge-text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      color: var(--spark);
+      line-height: 1;
+    }
+    .pr-guarantee__badge-text span {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .pr-guarantee__points {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .pr-guarantee__point {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .pr-guarantee__point-icon {
+      width: 32px; height: 32px;
+      border: 1px solid var(--steel-border);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--spark);
+    }
+    .pr-guarantee__point-icon svg {
+      width: 16px; height: 16px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .pr-guarantee__point strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    /* ── FAQ block ── */
+    .pr-faq {
+      padding: 80px 60px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .pr-faq__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 50px;
+      border-top: 1px solid var(--steel-border);
+    }
+    .pr-faq__item {
+      padding: 28px 28px 28px 0;
+      border-bottom: 1px solid var(--steel-border);
+      cursor: pointer;
+      transition: background var(--transition);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease, background var(--transition);
+    }
+    .pr-faq__item:nth-child(even) { padding: 28px 0 28px 28px; border-left: 1px solid var(--steel-border); }
+    .pr-faq__item.revealed { opacity: 1; transform: translateY(0); }
+    .pr-faq__item:hover { background: rgba(204,213,71,0.02); }
+    .pr-faq__q {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .pr-faq__q-text {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 0.03em;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .pr-faq__toggle {
+      width: 28px; height: 28px;
+      border: 1px solid var(--steel-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--text-muted);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .pr-faq__toggle svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform 0.3s; }
+    .pr-faq__item.open .pr-faq__toggle { border-color: var(--spark); color: var(--spark); }
+    .pr-faq__item.open .pr-faq__toggle svg { transform: rotate(45deg); }
+    .pr-faq__a {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.35s ease;
+      font-size: 14px; line-height: 1.75;
+      color: var(--text-secondary);
+    }
+    .pr-faq__item.open .pr-faq__a { max-height: 200px; opacity: 1; padding-top: 14px; }
+
+    /* ── CTA ── */
+    .pr-cta {
+  padding: 120px 60px;
+  text-align: center;
+  border-top: 1px solid var(--steel-border);
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 20%, rgba(249,115,22,0.08), transparent 60%),
+    var(--steel-darkest);
+}
+
+.pr-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1;
+  margin: 20px 0;
+}
+
+.pr-cta__title span {
+  color: var(--spark);
+}
+
+.pr-cta__sub {
+  max-width: 600px;
+  margin: 0 auto 50px;
+  color: var(--text-secondary);
+}
+
+/* Contact row */
+.pr-cta__contact {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.pr-cta__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 25px;
+  border: 1px solid var(--steel-border);
+  border-radius: 10px;
+  min-width: 260px;
+  text-align: left;
+  transition: 0.3s;
+}
+
+.pr-cta__contact-item:hover {
+  border-color: var(--spark);
+  transform: translateY(-3px);
+}
+
+.pr-cta__contact-item svg {
+  width: 26px;
+  height: 26px;
+  color: var(--spark);
+}
+
+.pr-cta__contact-item strong {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.pr-cta__contact-item span {
+  font-size: 1rem;
+}
+
+.pr-cta__contact-divider {
+  width: 1px;
+  background: var(--steel-border);
+}
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .pr-hero { padding: 140px 30px 60px; }
+      .pr-intro { grid-template-columns: 1fr; gap: 30px; padding: 60px 30px; }
+      .pr-phase { padding: 0 30px 60px; }
+      .pr-guarantee { padding: 60px 30px; }
+      .pr-guarantee__inner { grid-template-columns: 1fr; gap: 40px; }
+      .pr-guarantee__badge { max-width: 200px; }
+      .pr-faq { padding: 60px 30px; }
+      .pr-faq__grid { grid-template-columns: 1fr; }
+      .pr-faq__item:nth-child(even) { padding: 28px 0; border-left: none; }
+      .pr-cta { padding: 80px 30px; }
+      .pr-cta__contact { flex-direction: column; }
+      .pr-cta__contact-divider { width: 80%; height: 1px; }
+      .pr-cta__contact-item { padding: 20px 24px; width: 100%; }
+      .pr-rule { padding: 0 30px; }
+      .pr-connector { padding: 10px 30px; }
+    }
+    @media (max-width: 600px) {
+      .pr-phase__header { flex-wrap: wrap; }
+      .pr-phase__num { font-size: 4rem; }
+      .pr-step { grid-template-columns: 44px 1fr; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <a href="index.html" class="logo">
+      <img src="images/logo.svg" alt="Panelix Logo" class="logo-img">
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html" class="mobile-link">Home</a></li>
+      <li><a href="services.html" class="mobile-link">Services</a></li>
+      <li><a href="process.html" class="mobile-link">Process</a></li>
+      <li><a href="about.html" class="mobile-link">About</a></li>
+      <li><a href="contact.html" class="mobile-link mobile-link--cta">Get a Quote</a></li>
+    </ul>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="pr-hero">
+    <div class="pr-hero__content reveal">
+      <p class="section-label">How We Work</p>
+      <h1 class="pr-hero__title">THE PANELIX<br/><span>PROCESS</span></h1>
+      <p class="pr-hero__sub">From the moment you contact us to the day you drive away — a clear, transparent process with no surprises. Here's exactly what happens at every stage.</p>
+    </div>
+  </section>
+
+  <!-- ── INTRO ── -->
+  <div class="pr-intro reveal">
+    <div>
+      <p class="section-label">Our commitment</p>
+      <h2 class="pr-intro__heading">TRANSPARENT.<br/>THOROUGH.<br/>GUARANTEED.</h2>
+    </div>
+    <p class="pr-intro__body">
+      We believe you deserve to know exactly what's happening to your vehicle and why. Every step in our process is documented, communicated, and checked — so by the time your car leaves our workshop, it's not just repaired, it's better than it was before the damage. That's not just our standard. It's our guarantee.
+    </p>
+  </div>
+
+  <!-- ════════════════════════════════════
+       PHASE 01 — INITIAL CONTACT & ASSESSMENT
+  ════════════════════════════════════════ -->
+  <div class="pr-rule"></div>
+  <section class="pr-phase" id="assessment">
+
+    <div class="pr-phase__header reveal">
+      <span class="pr-phase__num">01</span>
+      <h2 class="pr-phase__name">CONTACT &amp; ASSESSMENT</h2>
+      <span class="pr-phase__tag">Day 1</span>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">GET IN TOUCH</h3>
+        <p class="pr-step__desc">Call us, fill in our online form, or walk in. You can also upload photos of the damage for a preliminary digital quote — our estimators respond within one business day. We keep it simple: tell us what happened and we take it from there.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Phone</span>
+          <span class="pr-step__chip">Online form</span>
+          <span class="pr-step__chip">Walk-in welcome</span>
+          <span class="pr-step__chip">Digital photo quote</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">DAMAGE ASSESSMENT</h3>
+        <p class="pr-step__desc">Our senior estimator performs a thorough inspection of your vehicle — visible damage and hidden structural issues alike. We use calibrated measuring equipment to identify any underlying frame, chassis or panel deformation not obvious to the naked eye. Nothing gets missed.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Full visual inspection</span>
+          <span class="pr-step__chip">Structural check</span>
+          <span class="pr-step__chip">Hidden damage scan</span>
+          <span class="pr-step__chip">Photographic documentation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">DETAILED QUOTE</h3>
+        <p class="pr-step__desc">You receive a clear, itemised quote breaking down labour, parts, and paint costs — no vague totals or hidden fees. We walk you through it and answer every question. There's no obligation to proceed, and the quote is valid for 30 days.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Itemised — no surprises</span>
+          <span class="pr-step__chip">Labour + parts + paint</span>
+          <span class="pr-step__chip">Valid 30 days</span>
+          <span class="pr-step__chip">No obligation</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- connector -->
+  <div class="pr-connector"><div class="pr-connector__line"></div><div class="pr-connector__arrow">↓</div><div class="pr-connector__line"></div></div>
+
+  <!-- ════════════════════════════════════
+       PHASE 02 — INSURANCE & APPROVAL
+  ════════════════════════════════════════ -->
+  <div class="pr-rule"></div>
+  <section class="pr-phase" id="insurance">
+
+    <div class="pr-phase__header reveal">
+      <span class="pr-phase__num">02</span>
+      <h2 class="pr-phase__name">INSURANCE &amp; APPROVAL</h2>
+      <span class="pr-phase__tag">Days 1–3</span>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">INSURANCE CLAIM LODGEMENT</h3>
+        <p class="pr-step__desc">If you're going through insurance, we handle everything. We're approved repairers for all major Australian insurers. We lodge your claim, compile the required documentation, and liaise directly with your assessor — you don't need to make a single call to your insurer once you're with us.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">All major insurers</span>
+          <span class="pr-step__chip">We lodge the claim</span>
+          <span class="pr-step__chip">Full documentation provided</span>
+          <span class="pr-step__chip">No upfront payment</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">ASSESSOR LIAISON</h3>
+        <p class="pr-step__desc">Our estimators work directly with your insurance assessor, providing supplementary reports and evidence as required. If additional damage is discovered during the repair — which sometimes happens once panels are removed — we notify the insurer and get approval before proceeding. You're always kept informed.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Direct assessor contact</span>
+          <span class="pr-step__chip">Supplement reports handled</span>
+          <span class="pr-step__chip">Progress updates to you</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">BOOKING YOUR REPAIR</h3>
+        <p class="pr-step__desc">Once the quote is approved — by you or your insurer — we schedule your repair at a time that suits you. We'll arrange a courtesy vehicle or pickup service if needed. You'll receive a confirmed booking with an estimated completion date before any work begins.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Scheduled at your convenience</span>
+          <span class="pr-step__chip">Estimated completion given upfront</span>
+          <span class="pr-step__chip">Courtesy vehicle available</span>
+          <span class="pr-step__chip">Pickup &amp; drop-off available</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- connector -->
+  <div class="pr-connector"><div class="pr-connector__line"></div><div class="pr-connector__arrow">↓</div><div class="pr-connector__line"></div></div>
+
+  <!-- ════════════════════════════════════
+       PHASE 03 — THE REPAIR
+  ════════════════════════════════════════ -->
+  <div class="pr-rule"></div>
+  <section class="pr-phase" id="repair">
+
+    <div class="pr-phase__header reveal">
+      <span class="pr-phase__num">03</span>
+      <h2 class="pr-phase__name">THE REPAIR</h2>
+      <span class="pr-phase__tag">The Craft</span>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">DISASSEMBLY &amp; STRUCTURAL REPAIR</h3>
+        <p class="pr-step__desc">Affected panels and components are carefully removed to expose the full extent of the damage. Our structural repair specialists use computerised bench and measuring systems to pull, straighten and restore your chassis and body panels to exact OEM tolerances — the geometry your manufacturer engineered.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">3D computerised measuring</span>
+          <span class="pr-step__chip">Hydraulic pulling equipment</span>
+          <span class="pr-step__chip">OEM tolerance restoration</span>
+          <span class="pr-step__chip">Airbag &amp; sensor check</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">PANEL BEATING &amp; METAL WORK</h3>
+        <p class="pr-step__desc">Our panel beaters use a combination of traditional craft — hammers, dollies, and shrinking techniques developed over decades — alongside modern hydraulic tools to return each panel to its factory profile. Where panels are beyond repair, we fit OEM or high-quality aftermarket replacements.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Traditional &amp; modern techniques</span>
+          <span class="pr-step__chip">OEM replacement panels</span>
+          <span class="pr-step__chip">PDR where applicable</span>
+          <span class="pr-step__chip">Rust treatment if required</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">PREPARATION &amp; PRIMING</h3>
+        <p class="pr-step__desc">All repaired surfaces are carefully sanded, filled, and primed. This stage is where invisible repairs are won or lost — our preparation technicians take no shortcuts. Primer coats are applied, dried and wet-sanded until the surface is perfectly smooth and ready for paint.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Multi-stage sanding</span>
+          <span class="pr-step__chip">Two-pack epoxy primer</span>
+          <span class="pr-step__chip">Wet-sand between coats</span>
+          <span class="pr-step__chip">No visible filler lines</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M5 12s2.545-.136 4-2c1.455-1.864 2-4 2-4s.545 2.136 2 4c1.455 1.864 4 2 4 2s-2.545.136-4 2c-1.455 1.864-2 4-2 4s-.545-2.136-2-4c-1.455-1.864-4-2-4-2z"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">PAINT &amp; COLOUR MATCHING</h3>
+        <p class="pr-step__desc">Our computerised spectrophotometer reads your vehicle's existing paint — accounting for age, fade, and metallic or pearl pigment characteristics — and mixes an exact match. Paint is applied in our temperature-controlled, dust-free spray booths for a flawless, factory-grade finish on every coat.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Spectrophotometer colour match</span>
+          <span class="pr-step__chip">Climate-controlled booth</span>
+          <span class="pr-step__chip">Waterborne &amp; solvent options</span>
+          <span class="pr-step__chip">Clear-coat applied &amp; cured</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">REASSEMBLY</h3>
+        <p class="pr-step__desc">Once paint has fully cured, all trim, glass, lights, sensors and mechanical components removed during disassembly are refitted with care. Panel gaps and alignments are checked against factory tolerances. Every clip, seal and fastener is reinstalled correctly — not just good enough, but right.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Panel gap verification</span>
+          <span class="pr-step__chip">Sensor &amp; ADAS recalibration</span>
+          <span class="pr-step__chip">All trim &amp; glass refitted</span>
+          <span class="pr-step__chip">Mechanical inspection</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- connector -->
+  <div class="pr-connector"><div class="pr-connector__line"></div><div class="pr-connector__arrow">↓</div><div class="pr-connector__line"></div></div>
+
+  <!-- ════════════════════════════════════
+       PHASE 04 — QUALITY & DELIVERY
+  ════════════════════════════════════════ -->
+  <div class="pr-rule"></div>
+  <section class="pr-phase" id="delivery">
+
+    <div class="pr-phase__header reveal">
+      <span class="pr-phase__num">04</span>
+      <h2 class="pr-phase__name">QUALITY &amp; DELIVERY</h2>
+      <span class="pr-phase__tag">Final Stage</span>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">QUALITY INSPECTION</h3>
+        <p class="pr-step__desc">Every vehicle goes through a rigorous multi-point quality inspection before it leaves our floor. We check paint finish (colour match, gloss, orange peel), panel alignment, gap consistency, all mechanical components, electrical systems and interior cleanliness. We only sign off when it's genuinely perfect.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Multi-point checklist</span>
+          <span class="pr-step__chip">Paint depth &amp; gloss check</span>
+          <span class="pr-step__chip">Panel gap verification</span>
+          <span class="pr-step__chip">Electrical &amp; mechanical test</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">YOUR WALKTHROUGH</h3>
+        <p class="pr-step__desc">We don't just hand you your keys. Our team walks you around the repaired vehicle, pointing out exactly what was done and why. You'll see the before and after documentation, confirm the repair meets your expectations, and have all your questions answered before you drive away.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">In-person vehicle walkthrough</span>
+          <span class="pr-step__chip">Before &amp; after photo review</span>
+          <span class="pr-step__chip">All work explained clearly</span>
+          <span class="pr-step__chip">Invoice provided in full</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-step">
+      <div class="pr-step__icon">
+        <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+      </div>
+      <div>
+        <h3 class="pr-step__title">VEHICLE DELIVERY</h3>
+        <p class="pr-step__desc">Your vehicle is returned cleaned inside and out — we think a clean car is a mark of respect for the work we've done and for you as a client. If you used our pickup service, we'll drop it back to you at home or work. We also carry out a final road-ready check before handover.</p>
+        <div class="pr-step__detail">
+          <span class="pr-step__chip">Interior &amp; exterior cleaned</span>
+          <span class="pr-step__chip">Road-ready check</span>
+          <span class="pr-step__chip">Drop-off available</span>
+          <span class="pr-step__chip">Courtesy car returned</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── GUARANTEE BLOCK ── -->
+  <div class="pr-guarantee reveal">
+    <div class="pr-guarantee__inner">
+      <div class="pr-guarantee__badge">
+        <div class="pr-guarantee__ring"></div>
+        <div class="pr-guarantee__ring-inner"></div>
+        <div class="pr-guarantee__badge-text">
+          <strong>LIFE</strong>
+          <span>Time<br/>Guarantee</span>
+        </div>
+      </div>
+      <div class="pr-guarantee__content">
+        <p class="section-label">Our promise</p>
+        <h2 class="section-title">WE STAND<br/><span>BEHIND EVERY JOB</span></h2>
+        <div class="pr-guarantee__points">
+          <div class="pr-guarantee__point">
+            <div class="pr-guarantee__point-icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>Lifetime Workmanship Guarantee</strong>
+              All structural and panel repairs we carry out are guaranteed for the life of the vehicle. If our workmanship fails, we fix it — no questions asked.
+            </div>
+          </div>
+          <div class="pr-guarantee__point">
+            <div class="pr-guarantee__point-icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>Paint Guarantee</strong>
+              Our colour-matched finishes are guaranteed against peeling, flaking, and delamination. Manufacturer paint defects are a thing of the past.
+            </div>
+          </div>
+          <div class="pr-guarantee__point">
+            <div class="pr-guarantee__point-icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>Parts Guarantee</strong>
+              All replacement parts — OEM or aftermarket — carry the manufacturer's warranty and are covered by our fitting guarantee.
+            </div>
+          </div>
+          <div class="pr-guarantee__point">
+            <div class="pr-guarantee__point-icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>No Hidden Costs</strong>
+              The price on your approved quote is the price you pay. Period. If scope changes mid-repair, we notify you and get approval before proceeding.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FAQ ── -->
+  <section class="pr-faq">
+    <p class="section-label reveal">Common questions</p>
+    <h2 class="section-title reveal">WHAT PEOPLE<br/><span>ASK US</span></h2>
+
+    <div class="pr-faq__grid">
+
+      <div class="pr-faq__item">
+        <div class="pr-faq__q">
+          <span class="pr-faq__q-text">How long will my repair take?</span>
+          <div class="pr-faq__toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="pr-faq__a">It depends on the extent of damage. Minor dent repairs can be done same-day. A full smash repair typically takes 5–10 business days. We'll give you a specific estimate before work starts and notify you immediately if anything changes.</div>
+      </div>
+
+      <div class="pr-faq__item">
+        <div class="pr-faq__q">
+          <span class="pr-faq__q-text">Do I need to contact my insurer first?</span>
+          <div class="pr-faq__toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="pr-faq__a">No. You have the legal right to choose your own repairer in Australia. Simply contact us, and we'll lodge the claim on your behalf and manage all insurer communication directly. You don't need to make a single call to your insurer.</div>
+      </div>
+
+      <div class="pr-faq__item">
+        <div class="pr-faq__q">
+          <span class="pr-faq__q-text">Will the colour match perfectly?</span>
+          <div class="pr-faq__toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="pr-faq__a">Yes. We use a computerised spectrophotometer to read your vehicle's exact current paint — not just the factory code. This accounts for real-world ageing, fade, and pigment characteristics, giving you an invisible match that blends seamlessly with the rest of the car.</div>
+      </div>
+
+      <div class="pr-faq__item">
+        <div class="pr-faq__q">
+          <span class="pr-faq__q-text">What if more damage is found during the repair?</span>
+          <div class="pr-faq__toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="pr-faq__a">It happens — especially with structural damage that's only visible once panels are removed. We document everything, notify you immediately, and (if insured) prepare a supplementary report for your insurer. Work only proceeds on the additional damage with your explicit approval.</div>
+      </div>
+
+      <div class="pr-faq__item">
+        <div class="pr-faq__q">
+          <span class="pr-faq__q-text">Can I get a car while mine is being repaired?</span>
+          <div class="pr-faq__toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="pr-faq__a">Yes. We offer courtesy vehicles (subject to availability) and a free pickup and drop-off service within our service area. For insurance repairs, we'll also help coordinate a hire car through your insurer's entitlement. Just let us know at the time of booking.</div>
+      </div>
+
+      <div class="pr-faq__item">
+        <div class="pr-faq__q">
+          <span class="pr-faq__q-text">Is the repair guaranteed?</span>
+          <div class="pr-faq__toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="pr-faq__a">Yes — for life. All structural and panel work is covered by our lifetime workmanship guarantee. Paint finishes are guaranteed against peeling and delamination. If our work fails, we fix it at no cost to you. It's that simple.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="pr-cta" id="contact">
+    <p class="section-label">Start today</p>
+    <h2 class="pr-cta__title">READY TO GET<br/><span>STARTED?</span></h2>
+    <p class="pr-cta__sub">Get in touch for a free assessment for a same-day digital quote.</p>
+
+    <div class="pr-cta__contact">
+      <div class="pr-cta__contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <strong>Visit Us</strong>
+          <span>3 Kinder St, Campbellfield VIC 3061</span>
+        </div>
+      </div>
+      <div class="pr-cta__contact-divider"></div>
+      <div class="pr-cta__contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div>
+          <strong>Call Us</strong>
+          <a href="tel:0393976663"><span>03 9397 6663</span></a>
+        </div>
+      </div>
+      <div class="pr-cta__contact-divider"></div>
+      <div class="pr-cta__contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <strong>Email Us</strong>
+          <a href="mailto:Panel.ix@yahoo.com"><span>panel.ix@yahoo.com</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+  <div class="footer__top" style="margin-top: -40px;">
+
+    <!-- LEFT -->
+    <div class="footer__brand">
+      <a href="index.html" class="logo">
+        <img src="images/logo.svg" alt="Panelix" class="logo-img">
+      </a>
+      <p>
+        Melbourne's panel beating specialists. 
+        Quality repairs, guaranteed for life.
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer__right" style="margin-top: 60px;">
+      <div class="footer__bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="footer__bottom-dot"></span>
+        <a href="terms.html">Terms &amp; Conditions</a>
+      </div>
+
+      <div class="footer__bottom-info">
+        <p>© 2026 Panelix Panel Beating</p>
+        <p>ABN 65 695 899 159 · Campbellfield VIC 3061</p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  <script>
+    // ── Nav scroll ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('nav--scrolled', window.scrollY > 60);
+    });
+
+    // ── Hamburger ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .pr-step, .pr-faq__item').forEach(el => observer.observe(el));
+
+    // Stagger steps within each phase
+    document.querySelectorAll('.pr-phase').forEach(phase => {
+      phase.querySelectorAll('.pr-step').forEach((step, i) => {
+        step.style.transitionDelay = `${i * 0.08}s`;
+      });
+    });
+
+    // Stagger FAQ items
+    document.querySelectorAll('.pr-faq__item').forEach((item, i) => {
+      item.style.transitionDelay = `${i * 0.06}s`;
+    });
+
+    // ── FAQ accordion ──
+    document.querySelectorAll('.pr-faq__item').forEach(item => {
+      item.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.pr-faq__item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
